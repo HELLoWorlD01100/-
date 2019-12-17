@@ -1,27 +1,23 @@
-let text = 'abcabcabcabqccabc'
+let text = 'abbvbdabcabcbcabqccabc'
 let substring = "abc";
-let entry = new Array();
+let result = new Array();
 let table = new Map();
 for (let i = 0; i < substring.length; i ++){
     table.set(substring[i], i);
 }
-let start = new Date();
 for (let i = 0; i < text.length; i ++){
     if (table.has(text[i + substring.length - 1])){
         i += substring.length - table.get(text[i + substring.length - 1]) - 1;
         if (text.substr(i, substring.length) == substring){
-            entry.push(i);
+            result.push(i);
         }
-    }
-    else{
+    } else {
         i += substring.length - 1;
     }
 }
-let finish = new Date();
 console.log('Boyer-Moore!')
-console.log(`Runtime: ${finish - start}`);
-console.log(`Line item matching(first symbol!!!): ${entry.join(', ')}`);
-console.log(`Number of entries: ${entry.length}`)
+console.log(`Line item matching(first symbol!!!): ${result.join(', ')}`);
+console.log(`Number of entries: ${result.length}`)
 
 let startBF = new Date();
 function BruteForce(text, substring){
